@@ -1,0 +1,117 @@
+body{
+  font-family:'Arvo',serif;
+}
+h1#morseheader{
+  font-size:3em;
+  text-align:center;
+}
+div#messagearea{
+  border:3px outset;
+  margin:auto;
+  width:70%;
+  height:80%;
+}
+li.morsemessage{
+  font-family:'Open Sans',sans-serif;
+  font-size:1em;
+  margin-bottom:.5em;
+}
+form#sendmessage{
+  margin:auto;
+  width:70%;
+}
+a#leaveroom{
+  margin-left:30%;
+}
+form#join{
+  margin:auto;
+  width:50%;
+}
+.centerjoin{
+  text-align:center;
+}
+p#openingquote{
+  margin:auto;
+  font-size:2em;
+  text-align:center;
+  width:60%;
+  font-family:'Dancing Script',cursive;
+  padding-bottom:1em;
+}
+h3.submainheader{
+  font-size:1em;
+  text-align:center;
+  text-color:gray;
+}
+h2.mainsubheader{
+  font-size:2em;
+  text-align:center;
+}
+hr.subhr{
+  width:10%;
+}
+hr.subsubhr{
+  width:5%;
+}
+div.images{
+  text-align:center;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+div.images img{
+  display:inline-block;
+  padding-bottom:0;
+  margin-bottom:0;
+}
+div.step{
+  margin:auto;
+  width:80%;
+  text-align:center;
+  margin-top:1em;
+  margin-bottom:1em;
+}
+h3.steptext{
+  margin:auto;
+  text-align:center;
+  font-size:.8em;
+  padding-top:.5em;
+  width:90%
+}
+h3.stepnumber{
+  text-align:center;
+  font-size:1em;
+  margin:auto;
+  width:10%;
+}
+div#IS{
+  text-align:center;
+  padding-top:2em;
+}
+div.WHATIS{
+  margin:auto;
+  display:inline-block;
+  vertical-align:top;
+  width:30%;
+}
+p.reasoning{
+  text-color:#989898;
+  margin-top:2em;
+}
+div#MORSEMESSENGERIS{
+  background-color:rgb(104,169,255);
+  padding-top:2em;
+  padding-bottom:2em;
+  color:white;
+  margin-bottom:1em;
+  margin-top:0;
+}
+fieldset{
+  border:1px black solid;
+}
+legend{
+  text-align:center;
+}
+form{
+  padding-bottom:2em;
+  width:50%
+}

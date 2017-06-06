@@ -1,0 +1,94 @@
+{% block body %}
+  {% include 'header.html' %}
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/morsemessenger.css') }}">
+  <script src="../static/javascript/morsemessenger.js"></script>
+  <h1 id="morseheader">Morse Messenger </h1>
+  {% if session.intalks %}
+    <div id= "messagearea">
+      <ul>
+      {% for morse in morses %}
+        <li class="morsemessage">{{morse[0]}}</li>
+      {% endfor %}
+      </ul>
+    </div>
+    <form id="sendmessage" action="{{url_for('send_morse')}}" method=post>
+      <dd><input type=text name=message placeholder="Send a message">
+    </form>
+    <a id="leaveroom" href="{{ url_for('leaveroom') }}">Leave Room</a>
+  {% endif %}
+  {% if not session.intalks %}
+    <p id="openingquote">If every problem has a solution and people are willing to pay money for solutions, then startups are lucky that there are infinite problems<br>~Probably Someone</p>
+    <h3 class ="submainheader">INTRODUCING</h3>
+    <h2 class ="mainsubheader">SOMETHING NOBODY ASKED FOR</h2>
+    <hr class ="subhr">
+    <h3 class="submainheader">BEFORE</h3>
+     <div class="images">
+      <img src="../static/images/Before1.png" width="30%" height="30%">
+      <img src="../static/images/Before2.png" width="30%" height="30%">
+      <img src="../static/images/Before3.png" width="30%" height="30%">
+     </div>
+    <hr class ="subhr">
+    <h3 class ="submainheader">AFTER</h3>
+      <div class="images">
+        <img src="../static/images/After1.png" width="30%" height="30%">
+        <img src="../static/images/After2.png" width="30%" height="30%">
+        <img src="../static/images/After3.png" width="30%" height="30%">
+      </div>
+    <div id="MORSEMESSENGERIS">
+      <h3 class="submainheader">MORSE MESSENGER IS</h3>
+        <div id="IS">
+          <div class ="WHATIS">
+            <h2 class="mainsubheader">WEBSCALABLE</h2>
+            <img class="imagewhatis" alt="Webscalable" src="../static/images/scalable.png" width="30%" height="30%">
+            <p class="reasoning">Working on Pusher infrastructure, if I paid more money, this would rival Facebook Messenger</p>
+          </div>
+          <div class="WHATIS">
+            <h2 class="mainsubheader">HASSLE FREE</h2>
+            <img class="imagewhatis" alt="hassle free" src="../static/images/hasslefree.png" width="30%" height="30%">
+            <p class="reasoning">No extra bells and whistles to learn. Only requirements is an expert proficiency in morse code</p>
+          </div>
+          <div class="WHATIS">
+            <h2 class="mainsubheader">SECURE</h2>
+            <img class="imagewhatis" alt="Secure" src="../static/images/secure.png" width="30%" height="30%">
+            <p class="reasoning">I will never sell your secrets to the NSA simply because I don't have to infrastructure to keep them</p>
+          </div>
+        </div>
+      </div>
+    <h2 class="mainsubheader">HOW DOES IT WORK?</h2>
+      <div class="step">
+        <h3 class="stepnumber">1</h3>
+        <h3 class="steptext">Join a channel and an event</h3>
+      </div>
+      <hr class="subsubhr">
+      <div class="step">
+        <h3 class="stepnumber">2</h3>
+        <h3 class="steptext">Download the Morse Messenger APP</h3>
+      </div>
+      <hr class="subsubhr">
+      <div class="step">
+        <h3 class="stepnumber">3</h3>
+        <h3 class="steptext">Have the person with the app join the same room</h3>
+      </div>
+      <hr class="subsubhr">
+      <div class="step">
+        <h3 class="stepnumber">4</h3>
+        <h3 class="steptext">Send a message to them and it will vibrate in morse code</h3>
+      </div>
+    <hr class="subhr">
+    <form id="join" action="{{url_for('joinchannel')}}" method=post>
+      <fieldset>
+        <legend>TRY IT OUT</legend>
+        <dl>
+          <dt class="centerjoin">Channel:
+          <dd class="centerjoin"><input type=text name=channel>
+          <dt class="centerjoin">Event:
+          <dd class="centerjoin"><input type=text name=event>
+          <dd class="centerjoin"><input type=submit>
+        </dl>
+      </fieldset>
+    </form>
+  {% endif %}
+{% endblock %}
