@@ -1,0 +1,8 @@
+{% block body %}
+  {% include 'header.html' %}
+  <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/404.css') }}">
+
+  <img id="chibi" src="../static/images/cryingchibi.jpg" width="40%" height="40%">
+  <h1 id='404header'>404</h1>
+  <h2 id='404subheader'>Page not found</h2>
+{% endblock %}

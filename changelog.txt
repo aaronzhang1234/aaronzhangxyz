@@ -1,1 +1,2 @@
 2017/6/5 - First commit! Added Morse Messenger, went from sqlite to postgresql, added main page.
+2017/6/7 - Second commit! Added twitter stuff and things to monitor tweets throughout the specified account. Also created tab for twitter analytics and can now create graphs and wordclouds based off those tweets gathered!
