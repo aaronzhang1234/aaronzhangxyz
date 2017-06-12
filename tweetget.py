@@ -32,7 +32,6 @@ def add_tweet(tweet):
     twitter_id = tweet['user']['id']
     twitter_name = tweet['user']['screen_name']
     text = tweet['text']
-
     url = "https://twitter.com/statuses/"+ str(tweet['id'])
     profilepic = str(tweet['user']['profile_image_url'])
     # The next few lines are seeing if an already exists in the table to store ID's and handles
@@ -53,30 +52,6 @@ def add_tweet(tweet):
     cur.close()
     conn.close()
 
-def keywordadd(tweet, keyword):
-    '''
-    This adds to the keyword table, helpful for predictit stuff
-    '''
-
-    conn = psycopg2.connect("dbname=tweets user=postgres")
-    cur = conn.cursor()
-    twitter_id = tweet['user']['id']
-    # Same deal as before, searching to see if there is already a row with
-    # the specifications it needs, if not, make that row.
-    cmd = "SELECT * FROM tweets_keyword WHERE twitter_id=%s AND keyword=%s"
-    cur.execute(cmd, (twitter_id, keyword))
-    there = cur.fetchone()
-    if not there:
-        cmd = "INSERT INTO tweets_keyword(twitter_id,keyword,amount) VALUES(%s,%s,%s)"
-        cur.execute(cmd, (twitter_id, keyword, 0))
-        conn.commit()
-    # This is adding one to the amount of the keyword row.
-    cmd = "UPDATE tweets_keyword SET amount= amount+1 WHERE twitter_id=%s AND keyword=%s"
-    cur.execute(cmd, (twitter_id, keyword))
-    conn.commit()
-    cur.close()
-    conn.close()
-
 def main():
     conf = _get_credentials()
     golden_shower = TwitterStream(auth=_get_oauth(conf), domain='userstream.twitter.com')
@@ -84,11 +59,6 @@ def main():
         tweet = json.loads(json.dumps(msg))
         if 'text' in tweet:
             print("New tweet from "+tweet['user']['name'])
-            add_tweet(tweet)
-            if "love" in tweet['text'].lower():     # Let's see how much twitter loves
-                keywordadd(tweet, "love")
-            if "trump" in tweet['text'].lower():
-                keywordadd(tweet, "Trump") 
-
+            add_tweet(tweet)            
 if __name__ == '__main__':
     main()

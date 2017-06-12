@@ -96,7 +96,7 @@ def projects():
     '''
     return render_template('projects.html')
 
-@app.route('/twitteranalytics',methods=['GET'])
+@app.route('/twitteranalytics', methods=['GET'])
 def twitteranalytics():
     '''
     analyzing tweets
@@ -106,17 +106,17 @@ def twitteranalytics():
     if opt_param is None:
         determine = "No Get"
     else:
-        location_graph = "static/images/twitter_analytics/twitter_analytics_for"+opt_param+".png"
-        location_cloud = "static/images/twitter_analytics/twitter_wordcloud_for"+opt_param+".png" 
+        location_graph = "static/images/twitter_analytics/graphs/"+opt_param+".png"
+        location_cloud = "static/images/twitter_analytics/wordclouds/"+opt_param+".png"
         my_graph_exists = os.path.exists(location_graph)
         my_cloud_exists = os.path.exists(location_cloud)
         if my_graph_exists and my_cloud_exists:
-            determine = [location_graph,location_cloud]
+            determine = [location_graph, location_cloud]
         else:
             determine = "DNE"
     return render_template('twitteranalytics.html', determine=determine)
 
-@app.route('/twitteranalytics/choosedate',methods=['POST'])
+@app.route('/twitteranalytics/choosedate', methods=['POST'])
 def choosedate():
     return redirect(url_for('twitteranalytics'))
 
