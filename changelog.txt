@@ -2,3 +2,4 @@
 2017/6/7 - Second commit! Added twitter stuff and things to monitor tweets throughout the specified account. Also created tab for twitter analytics and can now create graphs and wordclouds based off those tweets gathered!
 2017/6/12 - Third commit! Changed layout and structuring of the entirething
 made create graph look much better
+2017/6/12 - Fourth commit. Kinda useless adding stuff
