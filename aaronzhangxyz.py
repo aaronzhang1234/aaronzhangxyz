@@ -1,6 +1,7 @@
 '''
 My website
 '''
+
 import pusher
 import psycopg2
 import os.path
@@ -29,11 +30,11 @@ def morse():
     '''
     This is the main site for morse messenger, if the user is in a channel, the page goes to the send part. If the user is not in the channel, it sends it to the splash page.
     '''
-    conn = psycopg2.connect("dbname=morsemessenger user=postgres")
+    conn = psycopg2.connect("dbname=morsemessage user=postgres")
     cur = conn.cursor()
     # if user is in a channel or event already, it takes them to the message send screen
     if session.get('channel') and session.get('event'):
-        cmd = 'SELECT message FROM messages WHERE channel=%s AND event=%s ORDER by id'
+        cmd = 'SELECT message FROM message WHERE channel=%s AND event=%s ORDER by id'
         cur.execute(cmd, (session['channel'], session['event']))
         # This gets all the messages sent from the channel.
         morses = cur.fetchall()
@@ -57,10 +58,10 @@ def send_morse():
         secret=conf['pusher_secret'],
         ssl=True
     )
-    conn = psycopg2.connect("dbname=morsemessenger user=postgres")
+    conn = psycopg2.connect("dbname=morsemessage user=postgres")
     cur = conn.cursor()
     # Adds the message into the database on the channel and event
-    cmd = "insert into messages(channel, event,message) values (%s, %s, %s)"
+    cmd = "insert into message(channel, event,message) values (%s, %s, %s)"
     cur.execute(cmd, (session['channel'], session['event'], request.form['message']))
     conn.commit()
     # Pusher then sends the message through itself to whoever wants it
@@ -88,37 +89,6 @@ def leaveroom():
     session.pop('event', None)
     session.pop('intalks', None)
     return redirect(url_for('morse'))
-
-@app.route('/projects')
-def projects():
-    '''
-    For projects page.
-    '''
-    return render_template('projects.html')
-
-@app.route('/twitteranalytics', methods=['GET'])
-def twitteranalytics():
-    '''
-    analyzing tweets
-    '''
-    opt_param = request.args.get("twitterdate")
-    determine=""
-    if opt_param is None:
-        determine = "No Get"
-    else:
-        location_graph = "static/images/twitter_analytics/graphs/"+opt_param+".png"
-        location_cloud = "static/images/twitter_analytics/wordclouds/"+opt_param+".png"
-        my_graph_exists = os.path.exists(location_graph)
-        my_cloud_exists = os.path.exists(location_cloud)
-        if my_graph_exists and my_cloud_exists:
-            determine = [location_graph, location_cloud]
-        else:
-            determine = "DNE"
-    return render_template('twitteranalytics.html', determine=determine)
-
-@app.route('/twitteranalytics/choosedate', methods=['POST'])
-def choosedate():
-    return redirect(url_for('twitteranalytics'))
 
 @app.errorhandler(404)
 def page_not_found(e):
