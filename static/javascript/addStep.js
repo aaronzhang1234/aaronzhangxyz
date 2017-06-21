@@ -55,15 +55,4 @@ function more(){
 	
 	steps.appendChild(div);
 	
-	/*
-	var addStep = steps.lastChild;
-	steps.removeChild(steps.lastChild);
-	
-	steps.appendChild(label);
-	steps.appendChild(recipiestep);
-	steps.appendChild(skip);
-	steps.appendChild(fileupload);
-	steps.appendChild(skip);
-	steps.appendChild(addStep);
-	*/
 }

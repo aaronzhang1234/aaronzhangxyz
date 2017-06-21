@@ -5,3 +5,4 @@ made create graph look much better
 2017/6/12 - Fourth commit. Kinda useless adding stuff
 2017/6/18 - Fifth commit. Removed twitter stuff because it wasn't working out. Useless program that took up too much space, removed projects as I can just put new tabs for them. Pruning for WikiEats later.
 2017/6/21 - Sixth commit. A LONG TIME COMING. ADDED WIKIEATS INTEGRATION HALLELUJAH BLESS THE LORD. THIS TOOK ME WAY LONGER THAN 3 DAYS IF YOU WERE WONDERING, MORE LIKE 2 WEEKS.
+2017/6/21 - Seventh commit. What is going on with this javascript file?

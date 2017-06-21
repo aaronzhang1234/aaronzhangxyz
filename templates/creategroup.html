@@ -7,6 +7,7 @@
 		<title>Add Group</title>
 
 		<link href="../bootstrap3_defaultTheme/dist/css/bootstrap.css" rel="stylesheet">
+        <script src="../../../static/javascript/checkForms.js"></script>
 		
 	</head>
 	
@@ -16,7 +17,7 @@
 			<div class="row">
 				<h1>Create New Group</h1>
 			</div>
-			<form class="form-inline col-md-4" method="POST"  action="{{url_for('creategroup')}}" enctype="multipart/form-data">
+			<form class="form-inline col-md-4" method="POST" action="{{url_for('creategroup')}}" enctype="multipart/form-data">
 				<div class="form-group col-md-12">
 					<label class="control-label sr-only" for="groupname">Group Name</label>
 					<input class="form-control" type="text" name="groupname" placeholder="Group Name"/>
@@ -32,7 +33,7 @@
                 	<input type ="file" name="grouppic" id="grouppic">
 				</div>
 
-				<button class="btn btn-primary" type="submit" name="submit">Create Group</button>
+				<button class="btn btn-primary" type="submit" name="submit" onClick="checkCreateGroup(form)">Create Group</button>
 			</form>
 		</div>
 	</body>

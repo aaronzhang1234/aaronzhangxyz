@@ -36,11 +36,6 @@ function checkCreateAccount(form){
 		alert("you have to click the checkbox")
 		errors=true;
 	}
-	
-	
-	
-	
-	
 	if(errors){
 		event.preventDefault();
 	}
@@ -48,18 +43,25 @@ function checkCreateAccount(form){
 }
 function checkAddRecipe(form){
 	var errors = false;
-	/*
-	if(/\s/.test(form.recipiename.value)||form.recipiename.value == ""){
-		form.recipiename.style.backgroundColor="red";
-		form.recipiename.style.color="white";
+	
+	if(form.recipename.value == ""){
+        alert("Recipename cannot be blank")
+		form.recipename.style.backgroundColor="red";
+		form.recipename.style.color="white";
 		errors=true;
 	}
 	else{
-		form.recipiename.style.backgroundColor="white";
-		form.recipiename.style.color="black";
+		form.recipename.style.backgroundColor="white";
+		form.recipename.style.color="black";
 	}
 	
-	if(/\s/.test(form.recipiename.value)||form.step1.value=""){
+    if(":input".each(function() {
+        if($(this).val() === "")
+            alert("VALUES ARE EMPTY");
+            errors = true;
+    });
+	if(form.step1.value=""){
+        alert("Step 1 cannot be blank")
 		form.step1.style.backgroundColor="red";
 		form.step1.style.color="white";
 		errors=true;
@@ -68,11 +70,31 @@ function checkAddRecipe(form){
 		form.step1.style.backgroundColor="white";
 		form.step1.style.color="black";
 	}
-	*/
+	
 	if(errors){
 		event.preventDefault();
 	}
-	
+}
+function checkCreateGroup(form){
+    var errors = false;
 
-	
+    var groupname = form.groupname.value;
+    if(form.groupname.value==""){
+        alert("Group Names cannot be empty");
+        errors = true;
+    }
+    if(groupname.length >20){
+        alert("Group Names can only be 20 characters max");
+        form.groupname.style.backgroundColor="red";
+        form.groupname.style.color="white";
+        errors = true;
+    }
+    else{
+        form.groupname.style.backgroundColor="white";
+        form.groupname.style.color = "black";
+    }
+
+    if(errors){
+        event.preventDefault();
+    }
 }
