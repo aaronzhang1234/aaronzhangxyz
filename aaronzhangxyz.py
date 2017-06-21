@@ -192,7 +192,7 @@ def addrecipe():
     mainpic = request.files['mainpic']
     mainpicname = secure_filename(mainpic.filename) 
     if mainpicname=="":
-        mainpicname = "chef_hat.png"
+        mainpicname = "chefhat.png"
     else:
         cmd = "SELECT last_value FROM generalrecipes_recipeid_seq"
         cur.execute(cmd)
@@ -213,7 +213,7 @@ def addrecipe():
         steppic = request.files[imagenum]
         steppicname = secure_filename(steppic.filename)
         if steppic.filename=="":
-            steppicname = "chef_hat.png"
+            steppicname = "chefhat.png"
         else:
             steppicname = str(mainpicnum)+'_'+str(count)+'.png'
         steppic.save(os.path.join(app.config['UPLOAD_FOLDER'], steppicname))

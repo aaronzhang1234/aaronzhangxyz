@@ -59,7 +59,7 @@
 		 	</div>
 		 	<div class="row">
 		 		<div class="col-md-6">
-					<img src="../../../static/images/recipeimages/{% print(generalinfo[5]) %}" alt="tacos" class="img-responsive" /> 
+					<img src="../../../static/images/recipeimages/{% print(generalinfo[5])%}" alt="tacos" class="img-responsive" /> 
 		 		</div>
 		 		<div class="col-md-6">
 					<p>{% print(generalinfo[3]) %}</p>
@@ -68,12 +68,12 @@
 			{% for step in steps %}
                 {{ printstep(step)|safe }}
             {% endfor %}
-
 		 	<!-- Displays Related Recipes & Reviews -->
 			<div class="row">
 				<!-- Displays Recipes Submitted By User -->
 				<div class="panel-group panel-info col-md-6">
-					<h1 class="panel-heading">Related Recipes <small>({{related_recipes|length}})</small></h1>
+					<h1 class="panel-heading">Related Recipes <small>({{related_recipes|length}})</small>
+                    </h1>
 					
 					<div class="panel-body">
 					{% for related_recipe in related_recipes%}

@@ -79,7 +79,7 @@ def printgroup(groupid):
   cmd = "SELECT groupid, groupname, groupdescription, grouppicture FROM groups WHERE groupid = %s"
   cur.execute(cmd, (groupid, ))
   group = cur.fetchone()
-  return '<div class = "col-md-12 panel"><div class="col-md-4"><img src="../static/images/grouppics/'+ str(group[3]) +'" alt="'+str(group[1])+'" class="img-thumbnail"/> </div><div class="col-md-8"><h3><a href="'+ url_for('displaygroup',groupid=groupid)+'">'+str(group[1])+'</a></h3><p>'+str(group[2])+'</p></div></div><hr/>'
+  return '<div class = "col-md-12 panel"><div class="col-md-4"><img src="../../static/images/grouppics/'+ str(group[3]) +'" alt="'+str(group[1])+'" class="img-thumbnail"/> </div><div class="col-md-8"><h3><a href="'+ url_for('displaygroup',groupid=groupid)+'">'+str(group[1])+'</a></h3><p>'+str(group[2])+'</p></div></div><hr/>'
 
 def printuser(user):
   conn = psycopg2.connect('dbname=wikieats user=postgres')

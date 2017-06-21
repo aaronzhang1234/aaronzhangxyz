@@ -33,7 +33,7 @@ function checkCreateAccount(form){
 	}
 	
 	if(form.privacy.checked == false){
-		alert("you have to click the checkbox")
+		alert("you have to click the checkbox");
 		errors=true;
 	}
 	if(errors){
@@ -43,9 +43,8 @@ function checkCreateAccount(form){
 }
 function checkAddRecipe(form){
 	var errors = false;
-	
 	if(form.recipename.value == ""){
-        alert("Recipename cannot be blank")
+        alert("Recipename cannot be blank");
 		form.recipename.style.backgroundColor="red";
 		form.recipename.style.color="white";
 		errors=true;
@@ -54,14 +53,21 @@ function checkAddRecipe(form){
 		form.recipename.style.backgroundColor="white";
 		form.recipename.style.color="black";
 	}
-	
-    if(":input".each(function() {
-        if($(this).val() === "")
-            alert("VALUES ARE EMPTY");
-            errors = true;
-    });
+    
+    textareas = form.getElementsByTagName('textarea');
+    if(textareas[0].value==""){
+        alert("Description cannot be blank");
+        errors=true;
+    }
+    for(i = 1; i<textareas.length; i++){
+        if(textareas[i].value==""){
+            alert("Step "+i+" cannot be blank");
+            errors=true;   
+        }
+    }
+
 	if(form.step1.value=""){
-        alert("Step 1 cannot be blank")
+        alert("Step 1 cannot be blank");
 		form.step1.style.backgroundColor="red";
 		form.step1.style.color="white";
 		errors=true;
@@ -77,20 +83,16 @@ function checkAddRecipe(form){
 }
 function checkCreateGroup(form){
     var errors = false;
-
     var groupname = form.groupname.value;
-    if(form.groupname.value==""){
-        alert("Group Names cannot be empty");
-        errors = true;
-    }
-    if(groupname.length >20){
-        alert("Group Names can only be 20 characters max");
-        form.groupname.style.backgroundColor="red";
-        form.groupname.style.color="white";
+
+    if(groupname.length >20 || groupname==""){
+        alert("Group Names can only be between 1 and 20 characters");
+        form.groupname.style.backgroundColor = "red";
+        form.groupname.style.color = "white";
         errors = true;
     }
     else{
-        form.groupname.style.backgroundColor="white";
+        form.groupname.style.backgroundColor = "white";
         form.groupname.style.color = "black";
     }
 
