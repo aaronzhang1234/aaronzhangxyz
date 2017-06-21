@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Category: {% print(categoryname[0]) %}</title>
+
+		<!-- Bootstrap core CSS -->
+	</head>
+
+	<body>
+		<!-- Header -->
+		{% include 'WikiEatsHeader.html' %}
+	
+		<!-- Main Body -->
+		<div class="container">
+			<div class="row">
+			 	<!--Displays Found Recipes -->
+				<div class="panel-group panel-info col-md-12">
+					<h1 class="panel-heading">{% print(categoryname[0])%}<small>({{recipes|length}})</small></h1>
+					
+					<div class="panel-body"> 
+					    {% for recipe in recipes %}
+                            {{ printrecipe(recipe[0])|safe}}
+                        {% endfor %}
+					</div>
+				</div>
+			</div>
+		 </div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<div class='col-md-12'>
+<button id="manageGroupBtn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit Group</button>
+<form id="managegroup" class="form-horizontal hidden row" method="POST" action="{{url_for('managegroup', groupid=groupinfo[0])}}">
+    <div class='col-md-12'>
+	   <button class="btn btn-danger" type="button" id="closeManageGroup" class="btn col-md-1"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+
+    {% set delClass = 'col-md-8 hidden' %}
+    {% if groupmembers|length > 1 %}
+        <div class="col-md-4">
+          <div class="col-md-12">
+              <em>Transfer Group To User: </em>
+              <select class="" name="transfer" id="transfer">
+            {% for groupmember in groupmembers %}
+                {% if not isLeader(groupinfo[0], groupmember[0]) %}
+                    <option value="{% print(groupmember[0])%}">{% print(groupmember[1]) %}</option>
+                {% endif %}
+            {% endfor %}
+              </select>
+          </div>
+          <div class="col-md-12"><button type="submit" class="btn btn-success btn-sm">Save Changes</button></div>
+        </div>
+        {% set delClass= 'col-md-8 hidden' %}
+    {% endif %}
+
+</form>
+    <div id="deletegroupBtn" class="{{ delClass }}">
+        <a href="{{url_for('deletegroup', groupid=groupinfo[0])}}" onclick ="deleteGroup()"><button class="btn btn-warning btn-sm"><span class ="glyphicon glyphicon-trash"> Delete Group</span></button></a>
+    </div>
+</div>

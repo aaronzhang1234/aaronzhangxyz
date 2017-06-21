@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Wiki Eats - Account</title>
+
+		<!-- Bootstrap core CSS -->
+		<script src="../static/javascript/displayChange.js"></script>
+	</head>
+	<body>
+		<!-- Header -->
+		{% include 'WikiEatsHeader.html' %}	
+		<!-- Main Body -->
+		<div class="container">
+			<div class="row">
+				<!-- Displays Basic Info On User -->
+				<div class="col-md-12">
+					 <h1>Account Summary For: {{userinfo[1]}}
+
+					 	{% if session.userid%}
+					 		{% if session['userid']==userinfo[0]%}
+								{% include 'changeaccount.html' %}
+								{% if session.error %}
+									<div class="alert">
+										<span class="closebtn" onclick ="this.parentElement.style.display='none';">&times;</span>
+										Wrong user credentials, please try again.
+                                    </div>
+								{% endif %}
+                                {% if session.usernametaken %}
+                                    <div class="alert">
+                                        <span class="closebtn" onclick ="this.parentElement.style.display='none';">&times;</span>                                                    Username already taken.
+                                    </div>
+                                {% endif %}
+                            {% else %}
+								{% if isFollowing(userinfo[0], session['userid'])%}
+									<form class="form-inline" method="POST" action="{{url_for('unfollowUser', followingid=userinfo[0])}}">
+										<button class="btn-warning btn-sm" type="submit">Unfollow</button>
+										</form>
+								{% else %}
+									<form class="form-horizontal" method="POST" action="{{url_for('followUser', followingid=userinfo[0])}}">
+										<button class="btn-success btn-sm" type="submit">Follow</button>
+										</form>
+								{% endif %}
+                            {% endif %}
+                        {% endif %}
+					 </h1>
+					 <h3><strong>Name:</strong>{% print(userinfo[2]+' '+userinfo[3])%}</h3>
+		 		</div>
+
+		 		<div class='col-md-12'>
+		 			<!-- Displays Groups In -->
+		 			<div class='panel-group panel-success col-md-12'>
+		 				<h1 class='panel-heading'>Groups <small>({{ groups|length }})</small></h1>
+		 				<div class='panel-body'>
+					{% for group in groups %}
+                        {{ printgroup(group[0])|safe }}
+                    {% endfor %}
+		 			</div>
+		 		</div>
+
+                <div class='col-md-6'>
+		 		<!-- Displays Following -->
+                <div class='panel-group panel-success col-md-12'>
+                	<h1 class='panel-heading'>Following <small>({{ following|length }})</small></h1>
+                	<div class='panel-body'>
+                	    {% for followin in following%}
+                            {{ printuser(followin[0])|safe }}
+                        {% endfor %}
+                	</div>
+                </div>
+
+		 		<!-- Displays Followers -->
+                <div class='panel-group panel-success col-md-12'>
+                	<h1 class='panel-heading'>Followers <small>({{ followers|length }})</small></h1>
+                	<div class='panel-body'>
+                        {% for follower in followers%}
+                            {{ printuser(follower[0])|safe }}
+                        {% endfor %}
+                	</div>
+                </div>
+                </div>
+
+                <div class='col-md-6'>
+				<!-- Displays Recipes Submitted By User -->
+				<div class="panel-group panel-info col-md-12">
+					<h1 class="panel-heading">Recipes <small>({{ userrecipes|length }})</small></h1>
+					
+					<div class="panel-body">
+					{% for userrecipe in userrecipes%}
+                        {{ printrecipe(userrecipe[0])|safe }}
+                    {% endfor %}
+					</div>
+				</div>
+
+				<!-- Displays Reviews Submitted By User -->
+				<div class="panel-group panel-success col-md-12">
+					<h1 class="panel-heading">Reviews <small>({{ reviews|length }})</small></h1>
+					<div class="panel-body">
+						{% for review in reviews %}
+                            <div class="col-md-12 panel">
+                              <h2 class="col-md-12">
+                                <a href ="{{url_for('displayrecipe',recipeid = review[1])}}">{{review[5]}}</a><small>(<a href="{{url_for('displaycategory',categoryid=review[7])}}">{{review[8]}}</a>)
+                                by <a href="{{url_for('displayuser',userid=review[9])}}">{{review[10]}}</a></small>
+                              </h2>
+                              <h2 class="col-md-2">{{review[4]}}/5</h2>
+                              <h3>{{review[2]}}</h3>
+                              {% if session['userid'] == userinfo[0] %}
+                                <form class="form-inline" method="POST" action ={{url_for('deletereview', reviewid=review[0])}}>
+                                    <button class="btn-warning btn-sm" type = "submit">Delete Recipe</button>
+                                </form>
+                              {% endif %}
+                              <p>{{ review[3] }}</p>
+                            </div>
+                            <hr>
+                        {% endfor %}
+					</div>
+				</div>
+				</div>
+		 	</div><!-- /row -->
+		 </div><!--/Main Container-->
+	</body>
+</html>

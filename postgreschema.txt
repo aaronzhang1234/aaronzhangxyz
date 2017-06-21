@@ -3,4 +3,60 @@ CREATE TABLE message(
     channel text,
     message text,
     event text
-)
+);
+CREATE TABLE following(
+    followerid int,
+    followingid int,
+    PRIMARY KEY(followerid,followingid)
+);
+CREATE TABLE generalrecipes(
+    recipeid serial PRIMARY KEY,
+    userid int,
+    title text,
+    description text,
+    category int,
+    imagename text
+);
+CREATE TABLE groupmembers(
+    userid int,
+    groupid int,
+    PRIMARY KEY(userid,groupid)
+);
+CREATE TABLE groups(
+    groupid serial PRIMARY KEY,
+    groupname varchar(20),
+    groupdescription text,
+    leaderID int,
+    grouppicture text
+);
+CREATE TABLE pinnedrecipes(
+    groupid int,
+    recipeid int,
+    PRIMARY KEY(groupid,recipeid)
+);
+CREATE TABLE recipesteps(
+    recipeserial serial PRIMARY KEY,
+    recipeid int,
+    stepnumber int,
+    stepdescription text,
+    imagename text
+);
+CREATE TABLE recipecategory(
+    categoryid serial PRIMARY KEY,
+    categoryname varchar(20)
+);
+CREATE TABLE reviews(
+    reviewid serial PRIMARY KEY,
+    recipeid int,
+    reviewtitle varchar(100),
+    reviewtext text,
+    userid int,
+    rating int
+);
+CREATE TABLE users(
+    userid serial PRIMARY KEY,
+    username varchar(30),
+    firstname varchar(40),
+    lastname varchar(50),
+    password text
+);

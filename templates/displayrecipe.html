@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Showing Recipe</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href={{url_for('static', filename='css/bootstrap3_defaultTheme/dist/css/bootstrap.css')}} rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/wiki-eats.css')}} >
+		<script src="../static/javascript/displayReviewForm.js"></script>
+	</head>
+
+	<body>
+        {% include 'WikiEatsHeader.html' %}
+		<!-- Header -->
+			<!-- Main Body: Displays Recipes -->
+
+		<!-- Title -->
+		<div class="container">
+		
+			<div class="row">
+				<div class="col-md-12">
+					<h1>{% print(generalinfo[2]) %} 
+                     <small>
+                     (<a href="{{url_for('displaycategory', categoryid=generalinfo[4])}}">{{ generalinfo[6]}}</a>) 
+                     Made by
+                     {% if username %}
+                        <a href="{{url_for('displayuser', userid=generalinfo[1])}}">{{username[0]}}</a>
+                     {% else %}
+                         deleted
+                     {% endif %}
+                     </small>
+                     </h1>
+		 		</div>
+		 	</div>
+		 <!-- Add to group form -->
+		 	<div class="row">
+				<div class="col-md-12">
+						{% if session.userid %}
+							{% if head_of_groups %}
+                            <form class="form-horizontal col-md-12" method="POST" action="{{url_for('pinRecipe',recipeid=generalinfo[0])}}">
+                              <select name="pin" id="pin">
+								{% for group in head_of_groups %}
+									{% if not isPinned(group[0],generalinfo[0]) %}
+                                      <option value= "{% print(group[0]) %}" >{% print(group[1]) %}</option>
+								    {% endif %}
+                                {% endfor %}
+                              </select>
+                              <button class = "btn btn-success btn-xs" type="submit"><span class="glyphicon glyphicon-pushpin"></span>Pin recipe to groups</button>
+                            </form>
+                            </br>
+						    {% endif %}
+                        {% endif %}
+
+
+		 		</div>
+		 	</div>
+		 	<div class="row">
+		 		<div class="col-md-6">
+					<img src="../../../static/images/recipeimages/{% print(generalinfo[5]) %}" alt="tacos" class="img-responsive" /> 
+		 		</div>
+		 		<div class="col-md-6">
+					<p>{% print(generalinfo[3]) %}</p>
+		 		</div>
+		 	</div>
+			{% for step in steps %}
+                {{ printstep(step)|safe }}
+            {% endfor %}
+
+		 	<!-- Displays Related Recipes & Reviews -->
+			<div class="row">
+				<!-- Displays Recipes Submitted By User -->
+				<div class="panel-group panel-info col-md-6">
+					<h1 class="panel-heading">Related Recipes <small>({{related_recipes|length}})</small></h1>
+					
+					<div class="panel-body">
+					{% for related_recipe in related_recipes%}
+                        {{printrecipe(related_recipe)|safe}}
+                    {% endfor %}
+					</div>
+				</div>
+
+			 	<!--Displays Reviews-->
+				<div class="panel-group panel-success col-md-6">
+					<h1 class="panel-heading">Reviews <small> ({{reviews|length}}) {% print(average_rating) %}/5</small></h1>
+					<div class="panel-body">
+					    {% for review in reviews%}
+                            {{ printreview(review)|safe }}
+                        {% endfor %}
+					</div>
+					
+					<div class="panel-body">
+						{% include 'ratingsystem.html' %} 
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

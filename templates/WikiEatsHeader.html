@@ -1,0 +1,57 @@
+<header>
+    {% include 'header.html' %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/wikieats.css')}}" >
+    <link href={{url_for('static',filename='css/bootstrap3_defaultTheme/dist/css/bootstrap.css')}} rel="stylesheet">
+	<link rel="stylesheet" type=text/css href="{{ url_for('static',filename='css/dropdown.css')}}">
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<nav>
+				<div class="navbar-header">
+					<a class="navbar-brand" href="{{url_for('wikieats')}}">WikiEats - GitHungry</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="{{url_for('about')}}">About Us</a></li>
+					<li><div class="dropdown">
+							<button class="dropbtn">Browse</button>
+							<div class="dropdown-content">
+								<a href="{{url_for('displaycategory',categoryid = 1)}}">Breakfast</a>
+								<a href="{{url_for('displaycategory',categoryid = 2)}}">Lunch</a>
+								<a href="{{url_for('displaycategory',categoryid = 3)}}">Dinner</a>
+								<a href="{{url_for('displaycategory',categoryid = 4)}}">Desserts</a>
+								<a href="{{url_for('displaycategory',categoryid = 5)}}">Snacks</a>
+								<a href="{{url_for('displaycategory',categoryid = 6)}}">Soups</a>
+								<a href="{{url_for('displaycategory',categoryid = 7)}}">Breads</a>
+							</div>
+						</div>
+					</li>
+					{% if session.userid %}
+					  <li><div class="dropdown">
+					    <button class="dropbtn">Create</button>
+				        <div class="dropdown-content">
+					      <a href="{{url_for('addrecipepage')}}">Recipe</a>
+					      <a href="{{url_for('creategrouppage')}}">Group</a>
+					    </div>
+					  </div></li>
+					  <li><a href="{{url_for('displayuser',userid=session.get('userid'))}}">Account</a></li>
+					  <li><a href="{{url_for('logout')}}">Logout</a></li>
+                    {% endif %}
+					{% if not session.userid %}	
+					  <li><a href="{{url_for('createaccountpage')}}">Create Account</a></li>
+					  <li><a href="{{url_for('loginpage')}}">Login</a></li>
+					{% endif %}
+				</ul>
+				<div class="nav navbar-right">
+					<form class="navbar-form" role="search" method="GET" action="{{url_for('search')}}">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search Recipes, Descriptions, Users" name="search">
+							<div class="input-group-btn">
+								<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</nav>
+		</div>
+	</div>
+</header>
+

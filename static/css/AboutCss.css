@@ -1,0 +1,67 @@
+#description h1
+{
+	font-family: 'Lobster', cursive;
+	font-size: 12em;
+	/*padding-bottom: 0.1em;*/
+}
+#description h1 small
+{
+	font-size: 0.6em;
+}
+#description h1 br
+{
+	display: block;
+	margin: -0.8em 0;
+}
+#description h2
+{
+	font-size: 4em;
+	font-family: "Arial","Times New Roman";
+	font-variant: small-caps;
+	font-weight: bold;
+}
+#description p
+{
+	font-size: 1.5em;
+	font-family: "Georgia", "Times New Roman";
+}
+#description
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#developers h1
+{
+	text-align: center;
+	font-size: 9em;
+	padding-top: 0.5em;
+	font-variant: small-caps;
+	font-family: 'Lobster', cursive;
+}
+#developer h3
+{
+	font-size: 5em;
+	text-align: center;
+}
+#developer h3 small
+{
+	font-size: 0.5em;
+	font-style: italic;
+}
+#developer h3 br
+{
+	display: block;
+	margin: -0.5em 0;
+}
+#developers p
+{
+	font-family: "Courier", cursive;
+	font-style: italic;
+	font-size: 3em;
+}
+#developers #images
+{
+	padding-bottom: 2em;
+}

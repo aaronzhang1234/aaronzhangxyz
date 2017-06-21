@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Group: {% print(groupinfo[1]) %}</title>
+		<script src="../static/javascript/displayManage.js"></script> 
+		<!-- Bootstrap core CSS -->
+		<script src="../static/javascript/rusure.js"></script>
+
+	</head>
+
+	<body>
+		<!-- Header -->
+		{% include 'WikiEatsHeader.html' %}
+	
+		<!-- Main Body -->
+		<div class="container">
+			<div class="row">
+				<div class='col-md-2'>
+                    <img class='img-circle' src=../static/images/grouppics/{% print(groupinfo[4]) %} alt={% print(groupinfo[4]) %} HEIGHT=100 WIDTH=100 /img>
+                </div>
+				<h1 class='col-md-10'>{% print(groupinfo[1]) %}<br/>
+				<small>{% print(groupinfo[2]) %}</small></h1>
+				{% if session.userid %}
+					{% if isLeader(groupinfo[0], session['userid']) %}
+						{% include 'managegroup.html'%}
+                    {% endif %}
+					{% if not isLeader(groupinfo[0], session['userid']) and inGroup(groupinfo[0], session['userid']) %}
+						<form class="form-horizontal col-md-12" method="POST" action="{{url_for('leavegroup',groupid = groupinfo[0])}}">
+									<button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-minus"></span> Leave</button>
+								</form>
+                    {% endif %}
+			        {% if not isLeader(groupinfo[0], session['userid']) and not inGroup(groupinfo[0], session['userid']) %}
+						<form class="form-horizontal col-md-12" method="POST" action="{{url_for('joingroup', groupid = groupinfo[0])}}">
+								<button class="btn btn-success btn-xs" type="submit"><span class="glyphicon glyphicon-plus"></span> Join</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+			</div>
+
+			<div class='row'>
+				<div class='col-md-5'>
+				<!-- Display Group Members -->
+				<div class="panel-group panel-info col-md-12">
+					<h2 class ="col-md-12 panel-heading">Members ({{ groupmembers|length }})</h2>
+					<div class="panel-body">
+							{% for groupmember in groupmembers %}
+                                {{ printuser(groupmember[0])|safe }}
+						    {% endfor %}
+					</div>
+				</div>
+				</div>
+
+				<div class='col-md-7'>
+				<!--Displays Pinned Recipes -->
+				<div class="panel-group panel-info col-md-12">
+					<h2 class ="col-md-12 panel-heading">Pinned Recipes ({{ pinnedrecipes|length }})</h2>
+					<div class="panel-body">
+						{% for recipe in pinnedrecipes %}
+                            {% if session.userid %}
+						        {% if isLeader(groupinfo[0], session['userid']) %}
+							        <form class="form-inline col-md-12" method="POST" action="{{url_for('unpinRecipe', recipeid = recipe[0], groupid = groupinfo[0])}}">
+								    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-pushpin"></span> Unpin</button>
+								    </form>
+							    {% endif %}
+                            {% endif %}
+							{{ printrecipe(recipe[0])|safe }}
+                        {% endfor %}
+					</div>
+				</div>
+
+				<!-- Displays Newest Recipes -->
+				<div class="panel-group panel-success col-md-12">
+					<h2 class ="col-md-12 panel-heading">Newest Recipes ({{ grouprecipes|length }})</h2>
+
+					<div class="panel-body">
+						{% for grouprecipe in grouprecipes %}
+                            {{printrecipe(grouprecipe[0])|safe}}
+                        {% endfor %}
+					</div>
+				</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

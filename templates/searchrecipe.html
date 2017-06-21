@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search: {{search}}</title>
+
+		<!-- Bootstrap core CSS -->
+  	</head>
+
+	<body>
+		<!-- Header -->
+		{% include 'WikiEatsHeader.html' %}
+	
+		<!-- Main Body -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Search Results for {{search}}</h1>
+					<p>
+		 		</div>
+		 	</div>
+
+		 	<!--Displays Found Recipes -->
+			<div class="panel-group panel-info col-md-6">
+				<h1 class="panel-heading">Recipes <small>({{searchrecipes|length }})</small></h1>
+				
+				<div class="panel-body">
+					{% for recipe in searchrecipes %}
+                        {{ printrecipe(recipe[0])|safe }}
+                    {% endfor %}
+				</div>
+			</div>
+
+		 	<!--Displays Found Users -->
+			<div class="panel-group panel-success col-md-6">
+				<h1 class="panel-heading">Users <small>({{ searchusers|length }})</small></h1>
+				
+				<div class="panel-body">
+                    {% for user in searchusers %}
+                        {{ printuser(user[0])|safe }}
+                    {% endfor %}
+				</div>
+			</div>
+		 </div>
+
+	</body>
+</html>

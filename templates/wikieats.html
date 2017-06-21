@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Wiki Eats - Main</title>
+
+		<!-- Bootstrap core CSS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  
+	</head>
+	<body>
+		<!-- Header -->
+		{% include 'WikiEatsHeader.html' %}
+		<!-- Main Body -->
+		<div class="container">
+			<div class="row">
+
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+			    <ol class="carousel-indicators">
+			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			      <li data-target="#myCarousel" data-slide-to="1"></li>
+			      <li data-target="#myCarousel" data-slide-to="2"></li>
+			      <li data-target="#myCarousel" data-slide-to="3"></li>
+			    </ol>
+
+				<div class="carousel-inner" role="listbox">
+                    {{ printcarousel(new_recipes[0][0]," active")|safe }}
+                    {{ printcarousel(top_recipes[0][0])|safe }}
+                    {{ printcarousel(random_recipe[0][0])|safe }}
+                    {{ printcarousel(random_recipe[1][0])|safe }}
+				</div>
+
+			    <!-- Left and right controls -->
+			    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			      <span class="sr-only">Previous</span>
+			    </a>
+			    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			      <span class="sr-only">Next</span>
+			    </a>
+			</div>
+
+			<div class="col-md-6">
+			<!-- Popular Groups -->
+            <div class ="panel-group panel-success col-md-12">
+				<h1 class ="col-md-12 panel-heading">Popular Groups</h1>
+				<div class="panel-body">
+		            {% for group in top_groups%}
+                        {{ printgroup(group[0])|safe }}
+                    {% endfor %}
+                </div>
+            </div>
+
+			<!-- Displays Top Users By Recipe Count-->
+            <div class ="panel-group panel-success col-md-12">
+				<h1 class ="col-md-12 panel-heading">Most Active Users</h1>
+				<div class="panel-body">
+				    {% for chef in top_chefs %}
+                        {{ printuser(chef[0])|safe }}
+                    {% endfor %}
+                </div>
+            </div>
+
+			<!-- Displays Top Users By Review Count-->
+            <div class ="panel-group panel-success col-md-12">
+				<h1 class ="col-md-12 panel-heading">Most Active Critics</h1>
+				<div class="panel-body">
+				    {% for critic in top_critics %}
+                        {{ printuser(critic[0])|safe }}
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+
+		 	<!--Displays Newest Recipes -->
+			<div class="panel-group panel-danger col-md-6">
+				<h1 class="panel-heading">Newest Recipes <small>({{ new_recipes|length }})</small></h1>
+				
+				<div class="panel-body">
+                    {% for recipe in new_recipes %}
+                        {{ printrecipe(recipe[0])|safe }}
+                    {% endfor %}
+				</div>
+			</div>
+
+		 	<!--Displays Top Rated Recipes -->
+			<div class="panel-group panel-warning col-md-6">
+				<h1 class="panel-heading">Top Recipes <small>({{ top_recipes|length }})</small></h1>
+				
+				<div class="panel-body">
+                    {% for recipe in top_recipes %}
+                        {{ printrecipe(recipe[0])|safe }}
+                    {% endfor %}
+				</div>
+			</div>
+
+		 	<!--Displays Recipes In The Given Category -->
+			<div class="panel-group panel-success col-md-6">
+				<h1 class="panel-heading">{{category_name[0]}} <small>({{ current_recipes|length }})</small></h1>
+				
+				<div class="panel-body">
+		            {% for recipe in current_recipes %}
+                        {{ printrecipe(recipe[0]|safe )}}
+                    {% endfor %}
+				</div>
+			</div>
+
+	   <!--<div id="copyrightRow">
+	      <div class="container">
+	         <div class="row">
+	           <p class="text-muted">All images are copyright to their owners. WikiEats-GitHungry is a property of Aaron Zhang and Apolinar Ortega.
+	           <span class="pull-right">&copy; 2016-2017 Copyright</span></p>
+	         </div>
+	      </div>
+	   </div>-->
+
+	</body>
+</html>
