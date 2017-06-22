@@ -516,8 +516,10 @@ def changeaccount(userid):
         cur.execute(cmd, (newUsername, userid))
         conn.commit()
     if newPassword:
+        new_password_encode = newPassword.encode('utf-8')
+        passwordbcrypt = bcrypt.hashpw(new_password_encode, bcrypt.gensalt()).decode('utf-8')
         cmd = "UPDATE users SET password=%s WHERE userid=%s"
-        cur.execute(cmd, (newPassword, userid))
+        cur.execute(cmd, (passwordbcrypt, userid))
         conn.commit()
     cur.close()
     conn.close()
