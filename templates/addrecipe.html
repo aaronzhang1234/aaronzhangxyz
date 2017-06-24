@@ -14,6 +14,14 @@
 	<body>
 		{% include 'WikiEatsHeader.html' %}
 		<div class="container">
+            <div class="row">
+                <h1>Add New Recipe</h1>
+                {% if not session.right_extension %}
+                    <div class="alert">
+                        <span class="closebtn" onclick ="this.parentElement.style.display='none';">&times;</span>
+                        File can only be an image
+                {% endif %}
+            </div>
 			<form class="form-horizontal col-md-8" method="POST"  action="{{url_for('addrecipe')}}" enctype="multipart/form-data">
 				
 					<div class="form-group row">

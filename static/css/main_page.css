@@ -14,5 +14,8 @@ h2{
   text-align:center;
 }
 p{
+  margin:auto;
   text-align:center;
+  width:60%;
+  padding-bottom:1em;
 }

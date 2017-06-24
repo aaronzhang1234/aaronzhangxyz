@@ -16,7 +16,13 @@
 		<div class="container">
 			<div class="row">
 				<h1>Create New Group</h1>
+                {% if not session.right_extension %}
+                    <div class="alert">
+                        <span class="closebtn" onclick ="this.parentElement.style.display='none';">&times;</span>
+                        File can only be an image. 
+                {% endif %}
 			</div>
+
 			<form class="form-inline col-md-4" method="POST" action="{{url_for('creategroup')}}" enctype="multipart/form-data">
 				<div class="form-group col-md-12">
 					<label class="control-label sr-only" for="groupname">Group Name</label>

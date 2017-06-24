@@ -4,6 +4,12 @@ h1#mainheader{
   font-family:'Montserrat',sans-serif;
   color:white;
 }
+h2#contactinfo{
+  text-align:center;
+  font-size:2em;
+  font-family:'Montserrat, sans-serif';
+  color:white;
+}
 ul#menu{
   display:block;
   text-align:center;

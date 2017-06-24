@@ -9,3 +9,5 @@ made create graph look much better
 2017/6/22 - Eight commit. Made the javascript verification of creategroup and addrecipe actually work. Put in a new iconic chef hat for recipes and more great things.
 2017/6/22 - Ninth commit. Moved everything from init.py to the main folder, now hopefully I can actually run this on gunicorn.
 2017/6/22 - Tenth commit. Don't mind me, I just forgot to encrypt the new password when the user changes their account :( But on the bright side, now we have a twitter icon!
+2017/6/24 - Eleventh commit. Changing slight text and formating in the main page.
+            Adding a verfiication to the pictures in add recipe and add group
