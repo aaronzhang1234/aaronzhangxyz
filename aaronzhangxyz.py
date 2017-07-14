@@ -324,7 +324,8 @@ def addrecipepage():
     Page for the form where you add the recipe
     '''
     return render_template('addrecipe.html')
-@app.route('/wikieats/createrecipe/create', methods=['POST'])    
+    
+@app.route('/wikieats/createrecipe/create', methods=['POST'])
 def addrecipe():
     '''
     Actually uploading the recipe and storing it into a database
@@ -337,6 +338,10 @@ def addrecipe():
     mainpic = request.files['mainpic']
     mainpicname = secure_filename(mainpic.filename) 
     # If the user didn't upload a picture then put the default one in
+    cmd = "SELECT last_value FROM generalrecipes_recipeid_seq"
+    cur.execute(cmd)
+    num = cur.fetchone()
+    mainpicnum = num[0]+1
     if mainpicname=="":
         mainpicname = "chefhat.png"
     else:
@@ -346,28 +351,24 @@ def addrecipe():
             session['right_extension'] = False
             return redirect(url_for('addrecipepage'))
         # Rename the picture to the recipeid it will be, this SQL command is selecting the next recipeid as a number
-        cmd = "SELECT last_value FROM generalrecipes_recipeid_seq"
-        cur.execute(cmd)
-        num = cur.fetchone()
-        mainpicnum = num[0]+1
         mainpicname = str(num[0]+1)+'.png'
     # Actually saving the picture in the path
-    #mainpic.save(os.path.join(app.config['UPLOAD_FOLDER'],mainpicname))
+    mainpic.save(os.path.join(app.config['UPLOAD_FOLDER'],mainpicname))
     # Inserting the recipe information into the database
     cmd = 'INSERT INTO generalrecipes(userid, title, description,category,imagename) VALUES(%s, %s, %s, %s, %s)'
     cur.execute(cmd, (session.get('userid'), cgi.escape(request.form['recipename']), cgi.escape(request.form['description']), request.form['FoodCategory'], mainpicname))
-    #conn.commit()
+    conn.commit()
     cur.execute('SELECT recipeid FROM generalrecipes ORDER BY recipeid desc LIMIT 1')
     # Getting the recipeid
     recipeid = cur.fetchone()
     count = 1
-    stepnum = 'step'+str(count)
     # The reason why this whileloop is going from 1 to whatever the len-4 is because there are four other elements in the form other than the steps
     # A generally bruteforcing way
     while count <=len(request.form)-4:
         # This is getting the name of the form input so it can request the data
         stepnum = 'step'+str(count)
         imagenum = 'image'+str(count)
+        stepdescription = request.form[stepnum]
         # Generally the same image upload as last time
         steppic = request.files[imagenum]
         steppicname = secure_filename(steppic.filename)
@@ -382,13 +383,13 @@ def addrecipe():
             # However this is renaming the image to the recipeid plus an underscore and the stepid
             # Step 2 in recipe #4  will be renamed 4_2  
             steppicname = str(mainpicnum)+'_'+str(count)+'.png'
-        #steppic.save(os.path.join(app.config['UPLOAD_FOLDER'], steppicname))
+        steppic.save(os.path.join(app.config['UPLOAD_FOLDER'], steppicname))
         # Inserting the information into the database
         cmd = 'INSERT INTO recipesteps(recipeid, stepnumber, stepdescription, imagename) VALUES(%s, %s, %s, %s)'
-        cur.execute(cmd, (recipeid[0], count, request.form[stepnum], steppicname))
-        #conn.commit()
+        cur.execute(cmd, (recipeid[0], count, stepdescription, steppicname))
+        conn.commit()
         count = count+1
-    return redirect(url_for('displayrecipe', recipeid = recipeid[0])) 
+    return redirect(url_for('displayrecipe', recipeid = recipeid[0]))
 @app.route('/wikieats/recipe/<recipeid>', methods=['GET'])
 def displayrecipe(recipeid):
     '''

@@ -1,0 +1,6 @@
+psycopg2
+pusher
+flask-bootstrap
+bcrypt
+flask
+
