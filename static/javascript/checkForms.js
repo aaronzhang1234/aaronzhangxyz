@@ -66,7 +66,7 @@ function checkAddRecipe(form){
         }
     }
 
-	if(form.step1.value=""){
+	if(form.step1.value==""){
         alert("Step 1 cannot be blank");
 		form.step1.style.backgroundColor="red";
 		form.step1.style.color="white";
@@ -75,7 +75,7 @@ function checkAddRecipe(form){
 	else{
 		form.step1.style.backgroundColor="white";
 		form.step1.style.color="black";
-	}
+	} 
 	
 	if(errors){
 		event.preventDefault();

@@ -39,7 +39,7 @@ function more(){
 
 	
 	var recipiestep= document.createElement("textarea");
-	recipiestep.setAttribute("name","step"+ stepnumber);
+	recipiestep.setAttribute("name","step"+stepnumber);
 	recipiestep.className += "col-md-5";
 	var skip = document.createElement("br");
 	
