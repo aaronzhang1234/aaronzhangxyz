@@ -17,7 +17,7 @@ import json
 app = Flask(__name__)
 Bootstrap(app)
 app.config.from_object(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/images/recipeimages'
+app.config['UPLOAD_FOLDER'] = '/home/centralcommand/aaronzhangxyz/static/images/recipeimages'
 conf = json.load(open('config.json', 'r'))
 app.config.update(dict(
     SECRET_KEY=conf['secret_key'],
@@ -375,11 +375,11 @@ def addrecipe():
         if steppic.filename =="":
             steppicname = "chefhat.png"
         else:
-            pic_array = steppicname.split('.')
-            extension = pic_array[-1]
-            if extension not in allowed_extensions:
-                session['right_extension'] = False
-                return redirect(url_for('addrecipepage'))
+            #pic_array = steppicname.split('.')
+            #extension = pic_array[-1]
+            #if extension not in allowed_extensions:
+            #    session['right_extension'] = False
+            #    return redirect(url_for('addrecipepage'))
             # However this is renaming the image to the recipeid plus an underscore and the stepid
             # Step 2 in recipe #4  will be renamed 4_2  
             steppicname = str(mainpicnum)+'_'+str(count)+'.png'
