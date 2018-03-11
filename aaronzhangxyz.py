@@ -69,7 +69,7 @@ def my_utility_processor():
         else:
             return True
     def printstep(step):
-        return '<div class="row"><div class="col-md-12 col-md-offset-1"><h2>Step'+ str(step[0])+'</h2></div><div class="col-md-3 col-md-offset-1"><img src="../../static/images/recipeimages/'+step[2]+'" alt="'+step[2]+'" class="img-responsive"/></div><div class="col-md-5"><p>'+step[1]+'</p></div></div>'
+        return '<div class="row"><div class="col-md-12 col-md-offset-1"><h2>Step'+ str(step[0])+'</h2></div><div class="col-md-3 col-md-offset-1"><img src="../../static/images/recipeimages/'+step[2]+'" alt="'+step[2]+'" class="img-responsive"/></div><div class="col-md-5"><p style="font-size:1.5em;">'+step[1]+'</p></div></div>'
     def printreview(review):
         '''
         Prints review, self explanatory
@@ -777,17 +777,17 @@ def creategroup():
         groupid = cur.fetchone()
         groupid = int(groupid[0])+1
         grouppicname = str(groupid)+'.png'
-        #grouppic.save(os.path.join(app.config['UPLOAD_FOLDER'], grouppicname))
+        grouppic.save(os.path.join(app.config['UPLOAD_FOLDER'], grouppicname))
     cmd = "INSERT INTO groups (groupname, groupdescription, leaderid, grouppicture) VALUES (%s, %s, %s, %s)"
-    #cur.execute(cmd, (cgi.escape(request.form['groupname']), cgi.escape(request.form['groupdesc']), session.get('userid'), grouppicname))
-    #conn.commit()
+    cur.execute(cmd, (cgi.escape(request.form['groupname']), cgi.escape(request.form['groupdesc']), session.get('userid'), grouppicname))
+    conn.commit()
     cmd = "SELECT groupid FROM groups ORDER BY groupid DESC LIMIT 1"
     cur.execute(cmd)
     groupid = cur.fetchone()
     # When the group is created the leader also has the join the group!
     cmd = "INSERT INTO groupmembers (userid, groupid) VALUES (%s, %s)"
     cur.execute(cmd, (session.get('userid'), groupid[0]))
-    #conn.commit()
+    conn.commit()
     return redirect(url_for('wikieats', groupid=groupid[0], grouppicname=grouppicname))
 @app.route('/wikieats/group/<groupid>/leave', methods=['POST'])
 def leavegroup(groupid):
