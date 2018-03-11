@@ -111,7 +111,7 @@ def my_utility_processor():
         '''
         Prints groups in a compact way, used multiple times
         '''
-        conn = psycopg2.connect('dbname = wikieats user=aaronsee')
+        conn = psycopg2.connect("dbname = wikieats user=aaronsee password="+conf['aaronsee']+"")
         cur = conn.cursor()
         cmd = "SELECT groupid, groupname, groupdescription, grouppicture FROM groups WHERE groupid = %s"
         cur.execute(cmd, (groupid, ))
@@ -203,7 +203,7 @@ def send_morse():
         secret=conf['pusher_secret'],
         ssl=True
     )
-    conn = psycopg2.connect("dbname=morsemessage user=aaronsee password="+conf['aaronsee']+"")
+    conn = psycopg2.connect("dbname=morsemessage user=aaronadd password="+conf['aaronadd']+"")
     cur = conn.cursor()
     # Adds the message into the database on the channel and event
     cmd = "insert into message(channel, event,message) values (%s, %s, %s)"
