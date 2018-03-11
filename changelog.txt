@@ -14,3 +14,4 @@ made create graph look much better
 2017/7/23 - Thirteenth Commit. Fixed a bug where first step was being removed. If you see the changes the thing was that I had a single equals where a double equals was needed :(
 2017/10/?? - Fourteenth Commit. Changing fonts on displayrecipe page, put an ico for the website.
 2018/3/10 - Fifteenth Commit, around that ballpark. Fixed when bootstrap messed up the fonts and sizes of the header. Changed the front page. Added users to postgres so that one superuser isn't doing everything.
+2018/3/11 - Sixteenth Commit. Funnily enough, psycopg2 is required to have a password for any user other than super. This causes some problems, I stayed up all night to fix them. Great,fun times. Great. Fun. Times.
