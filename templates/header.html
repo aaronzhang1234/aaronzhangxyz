@@ -2,23 +2,24 @@
 <title>Aaron Zhang</title>
 <head>
   <link rel="icon" type = "image/png" href="{{ url_for('static',filename='images/About/thinking.ico.png')}}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/reset.css' ) }}">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<div id="header">
-<h1 id="mainheader">Aaron Zhang</h1>
-<h2 id="contactinfo">aaronzhang826@gmail.com</h2>
-
 <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/header.css') }}">
-  <ul id="menu">
-    <li class="menu main"><a href="{{url_for('main_page')}}">Main Page</a></li>
-    <li class="menu main"><a href="{{url_for('morse')}}">Morse Messenger</a></li>
-    <li class="menu main"><a href="{{url_for('wikieats')}}">Wiki Eats</a><li>
-    <li class="menu main"><a href="http://github.com/aaronzhang1234">Github</a></li>
-    <li class="menu main"><a href="http://medium.com/@nimbyest">Blog</a></li>
-    <li class="menu main"><a href="https://www.twitter.com/FirstOnAiry">Twitter</a></li>
-  </ul>
-<hr>
+<div id="aaronheader">
+  <h1 id="mainheader">Aaron Zhang</h1>
+  <h2 id="contactinfo">aaronzhang826@gmail.com</h2>
+    <ul id="menu">
+      <li class="menu main"><a href="{{url_for('main_page')}}">Main Page</a></li>
+      <li class="menu main"><a href="{{url_for('morse')}}">Morse Messenger</a></li>
+      <li class="menu main"><a href="{{url_for('wikieats')}}">Wiki Eats</a><li>
+      <li class="menu main"><a href="http://github.com/aaronzhang1234">Github</a></li>
+      <li class="menu main"><a href="http://medium.com/@nimbyest">Blog</a></li>
+      <li class="menu main"><a href="https://www.twitter.com/FirstOnAiry">Twitter</a></li>
+    </ul>
+  <hr>
 </div>
 

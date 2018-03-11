@@ -34,7 +34,7 @@ def my_utility_processor():
         '''
         Prints out a recipe but in a smaller form
         '''
-        conn = psycopg2.connect("dbname=wikieats user=postgres")
+        conn = psycopg2.connect("dbname=wikieats user=aaron")
         cur = conn.cursor()
         cmd = "SELECT recipeid, generalrecipes.userid, title, description, category, imagename, categoryname FROM generalrecipes LEFT JOIN recipecategory ON recipecategory.categoryid = generalrecipes.category WHERE generalrecipes.recipeid = %s"
         cur.execute(cmd, (recipeid, ))
@@ -59,7 +59,7 @@ def my_utility_processor():
         '''
         Takes a group and a recipe and returns True if the recipe is pinned or False if not
         '''
-        conn = psycopg2.connect("dbname=wikieats user=postgres")
+        conn = psycopg2.connect("dbname=wikieats user=aaron")
         cur = conn.cursor()
         cmd = "SELECT * FROM pinnedrecipes WHERE groupid = %s and recipeid=%s"
         cur.execute(cmd, (groupid, recipeid))
@@ -74,7 +74,7 @@ def my_utility_processor():
         '''
         Prints review, self explanatory
         '''
-        conn = psycopg2.connect('dbname=wikieats user=postgres')
+        conn = psycopg2.connect('dbname=wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT username FROM users WHERE userid=%s"
         cur.execute(cmd, (review[3], ))
@@ -85,7 +85,7 @@ def my_utility_processor():
             userinfo = 'deleted'
         return '<div class="col-md-12-panel"><h2 class="col-md-2">'+str(review[2])+'/5</h2><div class="col-md-10"><h3>'+review[0]+'</h3><h4>' +userinfo+' </h4></div><p>'+review[1]+'</p></div><hr>'
     def isLeader(groupid, userid):
-        conn = psycopg2.connect('dbname=wikieats user=postgres')
+        conn = psycopg2.connect('dbname=wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT * FROM groups WHERE groupid = %s AND leaderid = %s"
         cur.execute(cmd, (groupid, userid))
@@ -98,7 +98,7 @@ def my_utility_processor():
         '''
         Takes a user and a group and sees if the User is in the group
         '''
-        conn = psycopg2.connect('dbname=wikieats user=postgres')
+        conn = psycopg2.connect('dbname=wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT * FROM groupmembers WHERE groupid = %s AND userid=%s"
         cur.execute(cmd, (groupid, userid))
@@ -111,7 +111,7 @@ def my_utility_processor():
         '''
         Prints groups in a compact way, used multiple times
         '''
-        conn = psycopg2.connect('dbname = wikieats user=postgres')
+        conn = psycopg2.connect('dbname = wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT groupid, groupname, groupdescription, grouppicture FROM groups WHERE groupid = %s"
         cur.execute(cmd, (groupid, ))
@@ -121,7 +121,7 @@ def my_utility_processor():
         '''
         Takes userid and prints out the user.
         '''
-        conn = psycopg2.connect('dbname=wikieats user=postgres')
+        conn = psycopg2.connect('dbname=wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT COUNT(recipeid) FROM generalrecipes GROUP BY userid HAVING userid=%s"
         cur.execute(cmd, (user, ))
@@ -146,7 +146,7 @@ def my_utility_processor():
         Checks to see if followingid is following followerid
         Returns True if is following
         '''
-        conn = psycopg2.connect('dbname=wikieats user=postgres')
+        conn = psycopg2.connect('dbname=wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT * FROM following WHERE followingid = %s AND followerid=%s"
         cur.execute(cmd, (followingid, followerid))
@@ -159,7 +159,7 @@ def my_utility_processor():
         '''
         Prints the carousel in the main page of the website.
         '''
-        conn = psycopg2.connect('dbname=wikieats user=postgres')
+        conn = psycopg2.connect('dbname=wikieats user=aaron')
         cur = conn.cursor()
         cmd = "SELECT title, description, imagename FROM generalrecipes WHERE recipeid = %s"
         cur.execute(cmd, (recipeid, ))
@@ -177,7 +177,7 @@ def morse():
     '''
     This is the main site for morse messenger, if the user is in a channel, the page goes to the send part. If the user is not in the channel, it sends it to the splash page.
     '''
-    conn = psycopg2.connect("dbname=morsemessage user=postgres")
+    conn = psycopg2.connect("dbname=morsemessage user=aaron")
     cur = conn.cursor()
     # if user is in a channel or event already, it takes them to the message send screen
     if session.get('channel') and session.get('event'):
@@ -203,7 +203,7 @@ def send_morse():
         secret=conf['pusher_secret'],
         ssl=True
     )
-    conn = psycopg2.connect("dbname=morsemessage user=postgres")
+    conn = psycopg2.connect("dbname=morsemessage user=aaronadd")
     cur = conn.cursor()
     # Adds the message into the database on the channel and event
     cmd = "insert into message(channel, event,message) values (%s, %s, %s)"
@@ -237,7 +237,7 @@ def wikieats():
     '''
     Main page for wikieats, this functions gets all the quick overview of the site.
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaron')
     cur = conn.cursor()
     # Selects 5 newest recipes  
     cmd = "SELECT recipeid FROM generalrecipes ORDER BY recipeid DESC LIMIT 5"
@@ -307,7 +307,7 @@ def displaycategory(categoryid):
     '''
     Displays Category and all the recipes in that said category
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaron")
     cur = conn.cursor()
     # Getting category name from the id
     cmd = "SELECT categoryname FROM recipecategory WHERE categoryid = %s"
@@ -332,7 +332,7 @@ def addrecipe():
     '''
     allowed_extensions = ['jpeg', 'jpg', 'png']
     app.config['UPLOAD_FOLDER']='static/images/recipeimages'   #Place where recipe images are saved
-    conn = psycopg2.connect("dbname=wikieats user=postgres")  
+    conn = psycopg2.connect("dbname=wikieats user=aaronadd")  
     cur = conn.cursor()
     session['right_extension'] = True
     mainpic = request.files['mainpic']
@@ -395,7 +395,7 @@ def displayrecipe(recipeid):
     '''
     Displaying a recipe, this time the actual page of the recipe itself.
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaron")
     cur = conn.cursor()
     # Getting recipe info such as title, user who made it, description etc..
     cmd = "SELECT recipeid, userid, title, description, category, imagename, categoryname FROM generalrecipes LEFT JOIN recipecategory ON recipecategory.categoryid = generalrecipes.category WHERE generalrecipes.recipeid = %s"
@@ -446,7 +446,7 @@ def pinRecipe(recipeid):
     '''
     Takes a recipeid, pins the recipe to the group which was in the pin form.
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaronadd")
     cur = conn.cursor()
     # Pinning the recipe using the groupid from the form and the recipeid parameter
     cmd = "INSERT INTO pinnedrecipes(groupid, recipeid) VALUES (%s, %s)"
@@ -460,7 +460,7 @@ def unpinRecipe(recipeid, groupid):
     '''
     Takes the recipeid and groupid and deletes that row from the database.
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aarondelete")
     cur = conn.cursor()
     cmd = "DELETE FROM pinnedrecipes WHERE recipeid=%s AND groupid=%s"
     cur.execute(cmd, (recipeid, groupid))
@@ -473,7 +473,7 @@ def reviewrecipe(recipeid):
     '''
     Putting the review of the recipe of recipeid into the database
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaronadd")
     cur = conn.cursor()
     # Simple enough I mean
     # BTW cgi.escape simply changes all possible XSS characters such as #,>, and & into alphanumeric values
@@ -489,7 +489,7 @@ def deletereview(reviewid):
     '''
     Deleting a review, takes the reviewid to delete
     '''
-    conn = psycopg2.connect("dbname = wikieats user=postgres")
+    conn = psycopg2.connect("dbname = wikieats user=aarondelete")
     cur = conn.cursor()
     cmd = "DELETE FROM reviews WHERE reviewid = %s"
     cur.execute(cmd, (reviewid, ))
@@ -500,7 +500,7 @@ def displayuser(userid):
     '''
     Displays the actual user page. Needs userinfo, recipiesmade, followers, following, groups in, and reviews made
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaron")
     cur = conn.cursor()
     # Gets user information except for password :^)
     cmd = "SELECT userid,username,firstname,lastname from users WHERE userid = %s"
@@ -532,7 +532,7 @@ def followUser(followingid):
     '''
     Method to follow the user, followingid is the user you want to follow
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaronadd')
     cur = conn.cursor()
     cmd = "INSERT INTO following (followerid, followingid) VALUES (%s, %s)"
     cur.execute(cmd, (session.get('userid'), followingid))
@@ -543,7 +543,7 @@ def unfollowUser(followingid):
     '''
     Method to unfollow a user, following is the user you want to unfollow.
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aarondelete')
     cur = conn.cursor()
     cmd = "DELETE FROM following WHERE followingid = %s AND followerid = %s"
     cur.execute(cmd, (followingid, session.get('userid')))
@@ -554,7 +554,7 @@ def changeaccount(userid):
     '''
     Method to change your account and log the changes in the database.
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaronadd')
     cur = conn.cursor()
     # using cgi.escape to check for XSS
     firstname = cgi.escape(request.form['firstname'])
@@ -606,7 +606,7 @@ def deleteaccount(userid):
     '''
     Method to delete account, first deletes all the groups the user leads, then it deletes the rows from groupmembers where the user is in, thne it deletes the user itself.
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aarondelete')
     cur = conn.cursor()
     cmd = "SELECT groupid FROM groups WHERE leaderid=%s"
     cur.execute(cmd, (str(userid), ))
@@ -647,7 +647,7 @@ def login():
     '''
     if session.get('userid'):
         return redirect(url_for('page_not_found'))
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaron")
     cur = conn.cursor()
     # Bcrypt is a very secure password hashing function where you don't even have to store the salt
     # First you have to encode the password into utf-8
@@ -691,7 +691,7 @@ def createaccount():
     '''
     Actually creating the account!
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaronadd")
     cur = conn.cursor()
     # Does not allow you to view the page if you are already logged in
     cmd = 'SELECT userid FROM users WHERE username = %s'
@@ -727,7 +727,7 @@ def displaygroup(groupid):
     '''
     Displays the group itself
     '''
-    conn = psycopg2.connect("dbname=wikieats user=postgres")
+    conn = psycopg2.connect("dbname=wikieats user=aaron")
     cur = conn.cursor()
     # Selects all pinned recipes in group
     cmd = "SELECT recipeid FROM pinnedrecipes WHERE groupid = %s"
@@ -753,7 +753,7 @@ def creategroup():
     '''
     # Folder where all the grouppics are stored
     app.config['UPLOAD_FOLDER']='static/images/grouppics'
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaronadd')
     cur = conn.cursor()
     grouppic = request.files['grouppic']
     grouppicname = secure_filename(grouppic.filename)
@@ -794,7 +794,7 @@ def leavegroup(groupid):
     '''
     User who is logged in leaves the group specified in groupid
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aarondelete')
     cur = conn.cursor()
     # Delete row where the user was in the group
     cmd = "DELETE FROM groupmembers WHERE userid = %s AND groupid = %s"
@@ -808,7 +808,7 @@ def joingroup(groupid):
     '''
     Userid joins the group specified in groupid
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaronadd')
     cur = conn.cursor()
     cmd = "INSERT INTO groupmembers (userid, groupid) VALUES (%s, %s)"
     cur.execute(cmd, (session.get('userid'), groupid))
@@ -821,7 +821,7 @@ def deletegroup(groupid):
     '''
     Only the groupleader can delete a group.
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aarondelete')
     cur = conn.cursor()
     # Deletes the group from the groups table
     cmd = "DELETE FROM groups WHERE groupid = %s"
@@ -839,7 +839,7 @@ def managegroup(groupid):
     '''
     Sets a new leader when the old one wants to quit.
     '''
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaron')
     cur = conn.cursor()
     # Transfer leadership of the group to whoever was selected   
     cmd = "UPDATE groups SET leaderid = %s WHERE groupid = %s"
@@ -855,7 +855,7 @@ def search():
     '''
     search = cgi.escape(request.args.get('search'))
     searchparen = '%'+search+'%'
-    conn = psycopg2.connect('dbname=wikieats user=postgres')
+    conn = psycopg2.connect('dbname=wikieats user=aaron')
     cur = conn.cursor()
     # Gets recipes that are like the serach
     cmd = "SELECT recipeid FROM generalrecipes WHERE title LIKE %s"

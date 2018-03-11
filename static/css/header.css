@@ -1,18 +1,26 @@
-h1#mainheader{
+div#aaronheader h1#mainheader{
   text-align:center;
   font-size:3em;
   font-family:'Montserrat',sans-serif;
   color:white;
+  font-weight:900;
+  line-height:1.5;
+  margin-top:0px;
+  margin-bottom:0px;
 }
-h2#contactinfo{
+div#aaronheader h2#contactinfo{
   text-align:center;
   font-size:2em;
   font-family:'Montserrat, sans-serif';
   color:white;
+  margin-top:0px;
+  margin-bottom:0px;
 }
-ul#menu{
+div#aaronheader ul#menu{
   display:block;
   text-align:center;
+  margin-bottom:0px;
+  padding-bottom:20px;
 }
 .menu{
   display:inline-block;
@@ -21,8 +29,13 @@ ul#menu{
   margin-left:0em;
   margin-right:0em;
 }
-li.menu a{
+div#aaronheader li.menu a{
+  font-size: 1em;
+  font-family:'Montserrat, sans-serif';
+  font-weight:500;
+  line-height:1.2;
   padding:.5em .5em .5em .5em;
+  text-decoration:underline;
   background:gray;
   color:black;
 }
@@ -30,7 +43,7 @@ li.menu a:hover{
   background:white;
   color:black;
 }
-div#header{
+div#aaronheader{
   background-color:black;
 }
 li.main{

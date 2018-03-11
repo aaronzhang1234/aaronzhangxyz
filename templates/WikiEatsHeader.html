@@ -1,9 +1,32 @@
 <header>
-    {% include 'header.html' %}
     <link rel="icon" type = "image/png" href="{{ url_for('static',filename='images/About/thinking.ico.png')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	
+    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/reset.css' ) }}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/header.css') }}">
+     <div id="aaronheader"> 
+       <h1 id="mainheader">Aaron Zhang</h1>
+       <h2 id="contactinfo">aaronzhang826@gmail.com</h2>
+         <ul id="menu">
+           <li class="menu main"><a href="{{url_for('main_page')}}">Main Page</a></li>
+           <li class="menu main"><a href="{{url_for('morse')}}">Morse Messenger</a></li>
+           <li class="menu main"><a href="{{url_for('wikieats')}}">Wiki Eats</a><li>
+           <li class="menu main"><a href="http://github.com/aaronzhang1234">Github</a></li>
+           <li class="menu main"><a href="http://medium.com/@nimbyest">Blog</a></li>
+           <li class="menu main"><a href="https://www.twitter.com/FirstOnAiry">Twitter</a></li>
+         </ul>
+     </div>
+    
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	  
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/wikieats.css')}}" >
-    <link href={{url_for('static',filename='css/bootstrap3_defaultTheme/dist/css/bootstrap.css')}} rel="stylesheet">
+    <link href={{url_for('static',filename='css/bootstrap3_defaultTheme/dist/css/bootstrap.css')}} rel="stylesheet"> 
 	<link rel="stylesheet" type=text/css href="{{ url_for('static',filename='css/dropdown.css')}}">
+ 
 	<div class="navbar navbar-inverse">
 		<div class="container">
 			<nav>

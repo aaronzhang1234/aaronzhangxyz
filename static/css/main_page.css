@@ -1,21 +1,30 @@
 body{
-  background:black;
-  color:white;
+  background:white;
+  color:black;
   font-family:'Arvo',serif;
 }
 h1{
-  font-size:2em;
+  font-size:6em;
   text-align:center;
 }
 h2{
   margin-top:.2em;
   margin-bottom:.2em;
-  font-size:1.5em;
+  font-size:5em;
   text-align:center;
 }
 p{
   margin:auto;
   text-align:center;
+  font-size:3em;
   width:60%;
   padding-bottom:1em;
+}
+#picture{
+    height:40%;
+    width:40%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:50%;
 }
