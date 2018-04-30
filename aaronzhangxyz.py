@@ -866,6 +866,9 @@ def search():
     cur.execute(cmd, (searchparen, ))
     searchusers = cur.fetchall()
     return render_template('searchrecipe.html', searchrecipes=searchrecipes, searchusers=searchusers, search=search)
+@app.route('/ENG3050')
+def techcom():
+    return render_template('techcom.html')
 @app.errorhandler(404)
 def page_not_found(e):
     '''

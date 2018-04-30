@@ -1,18 +1,19 @@
-2017/6/5 - First commit! Added Morse Messenger, went from sqlite to postgresql, added main page.
-2017/6/7 - Second commit! Added twitter stuff and things to monitor tweets throughout the specified account. Also created tab for twitter analytics and can now create graphs and wordclouds based off those tweets gathered!
-2017/6/12 - Third commit! Changed layout and structuring of the entirething
+2017/6/5 - 1! Added Morse Messenger, went from sqlite to postgresql, added main page.
+2017/6/7 - 2! Added twitter stuff and things to monitor tweets throughout the specified account. Also created tab for twitter analytics and can now create graphs and wordclouds based off those tweets gathered!
+2017/6/12 - 3! Changed layout and structuring of the entirething
 made create graph look much better
-2017/6/12 - Fourth commit. Kinda useless adding stuff
-2017/6/18 - Fifth commit. Removed twitter stuff because it wasn't working out. Useless program that took up too much space, removed projects as I can just put new tabs for them. Pruning for WikiEats later.
-2017/6/21 - Sixth commit. A LONG TIME COMING. ADDED WIKIEATS INTEGRATION HALLELUJAH BLESS THE LORD. THIS TOOK ME WAY LONGER THAN 3 DAYS IF YOU WERE WONDERING, MORE LIKE 2 WEEKS.
-2017/6/21 - Seventh commit. What is going on with this javascript file?
-2017/6/22 - Eight commit. Made the javascript verification of creategroup and addrecipe actually work. Put in a new iconic chef hat for recipes and more great things.
+2017/6/12 - 4. Kinda useless adding stuff
+2017/6/18 - 5. Removed twitter stuff because it wasn't working out. Useless program that took up too much space, removed projects as I can just put new tabs for them. Pruning for WikiEats later.
+2017/6/21 - 6. A LONG TIME COMING. ADDED WIKIEATS INTEGRATION HALLELUJAH BLESS THE LORD. THIS TOOK ME WAY LONGER THAN 3 DAYS IF YOU WERE WONDERING, MORE LIKE 2 WEEKS.
+2017/6/21 - 7. What is going on with this javascript file?
+2017/6/22 - 8. Made the javascript verification of creategroup and addrecipe actually work. Put in a new iconic chef hat for recipes and more great things.
 2017/6/22 - Ninth commit. Moved everything from init.py to the main folder, now hopefully I can actually run this on gunicorn.
-2017/6/22 - Tenth commit. Don't mind me, I just forgot to encrypt the new password when the user changes their account :( But on the bright side, now we have a twitter icon!
-2017/6/24 - Eleventh commit. Changing slight text and formating in the main page.
-2017/7/14 - Twelfth Commith. Adding a verfiication to the pictures in add recipe and add group
-2017/7/23 - Thirteenth Commit. Fixed a bug where first step was being removed. If you see the changes the thing was that I had a single equals where a double equals was needed :(
-2017/10/?? - Fourteenth Commit. Changing fonts on displayrecipe page, put an ico for the website.
-2018/3/10 - Fifteenth Commit, around that ballpark. Fixed when bootstrap messed up the fonts and sizes of the header. Changed the front page. Added users to postgres so that one superuser isn't doing everything.
-2018/3/11 - Sixteenth Commit. Funnily enough, psycopg2 is required to have a password for any user other than super. This causes some problems, I stayed up all night to fix them. Great,fun times. Great. Fun. Times.
-2018/3/12- Seventeenth Commit. CSS finally works, Guess it just takes time to load in the css files.
+2017/6/22 - 10. Don't mind me, I just forgot to encrypt the new password when the user changes their account :( But on the bright side, now we have a twitter icon!
+2017/6/24 - 11. Changing slight text and formating in the main page.
+2017/7/14 - 12. Adding a verfiication to the pictures in add recipe and add group
+2017/7/23 - 13 . Fixed a bug where first step was being removed. If you see the changes the thing was that I had a single equals where a double equals was needed :(
+2017/10/?? - 14 . Changing fonts on displayrecipe page, put an ico for the website.
+2018/3/10 - 15 , around that ballpark. Fixed when bootstrap messed up the fonts and sizes of the header. Changed the front page. Added users to postgres so that one superuser isn't doing everything.
+2018/3/11 - 16- Funnily enough, psycopg2 is required to have a password for any user other than super. This causes some problems, I stayed up all night to fix them. Great,fun times. Great. Fun. Times.
+2018/3/12- 17. CSS finally works, Guess it just takes time to load in the css files.
+2018/4/29- 18. Added technical communication stuff. For school project.
