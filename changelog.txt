@@ -17,3 +17,4 @@ made create graph look much better
 2018/3/11 - 16- Funnily enough, psycopg2 is required to have a password for any user other than super. This causes some problems, I stayed up all night to fix them. Great,fun times. Great. Fun. Times.
 2018/3/12- 17. CSS finally works, Guess it just takes time to load in the css files.
 2018/4/29- 18. Added technical communication stuff. For school project.
+2018/4/30- 19, Final technical communcation stuff.
